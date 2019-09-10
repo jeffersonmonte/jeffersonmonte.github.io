@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mesa RPG</title>
+    <style>
+        ul{
+            list-style-type: none;
+        }
+        li{
+            float:left; 
+            margin:10px;
+            cursor: pointer;
+            }
+    </style>
+</head>
+<body>
+   <!-- <script type="text/javascript" src="js/mesa.js"></script>-->
+   <div class="listaImagens">
+       <ul>
+           <li onclick="carregaImagem('img/fundo/mapa.jpg')"><img src="img/fundo/mapa.jpg" width="80" height="80"></li>
+           <li onclick="carregaImagem('img/fundo/mapa2.jpg')"><img src="img/fundo/mapa2.jpg" width="80" height="80"></li>
+           <li onclick="carregaImagem('img/fundo/mapa3.jpg')"><img src="img/fundo/mapa3.jpg" width="80" height="80"></li>
+       </ul>
+    </div>
+    <script>
+
+        var canvas = document.createElement("canvas");
+        var canvasWidth = 540;
+        var canvasHeight = 540;
+
+        canvas.width = canvasWidth
+        canvas.height = canvasHeight;
+        canvas.style.background = "rgba(0,0,0,0.1)";
+        document.body.appendChild(canvas);
+        var contexto = canvas.getContext("2d");
+
+        const img = new Image();
+        
+        carregaImagem();
+
+        function carregaImagem(imagem)
+        {
+            if(imagem == null || imagem == undefined)
+            {
+                img.src = 'img/fundo/mapa.jpg';
+            }else{
+                img.src = imagem;
+            }
+            
+            img.onload = () => {
+                contexto.drawImage(img, 0, 0);
+                for(let i = 0; i < canvasWidth; i+=50)
+                {
+                    contexto.beginPath();
+                    contexto.lineTo(0, 50+i);
+                    contexto.lineTo(canvasWidth, 50+i);
+                    contexto.stroke();
+                }
+                
+                for(let i = 0; i < canvasHeight; i+=50)
+                {
+                    contexto.beginPath();
+                    contexto.lineTo(50+i, 0);
+                    contexto.lineTo(50+i, canvasHeight);
+                    contexto.stroke();
+                } 
+            };
+        }
+        
+        
+               
+        /*forma para aumentar o zoom*/
+        contexto.scale(1.2,1.2);
+
+    </script>
+</body>
+</html>
