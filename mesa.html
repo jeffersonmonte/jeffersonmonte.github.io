@@ -26,7 +26,7 @@
        </ul>
     </div>
     <script>
-
+        /* Iniciando as variaveis globais */
         var canvas = document.createElement("canvas");
         var canvasWidth = 540;
         var canvasHeight = 540;
@@ -39,7 +39,32 @@
 
         const img = new Image();
         
-        carregaImagem();
+        var desenhando = false;
+        /* verifica o clique do mouse para iniciar o desenho */
+        canvas.onmousedown = function(evt){
+
+        var x = evt.clientX-8;
+        var y = evt.clientY-8;
+        contexto.moveTo(x, y);
+        desenhando = true;
+        }
+        canvas.onmouseup = function(){
+            desenhando = false;
+        }
+        canvas.onmousemove = function(evt){
+            var x = evt.clientX-8;
+            var y = evt.clientY-8;
+            console.log(evt.clientX-9);
+            if(desenhando){
+                contexto.lineTo(x, y);
+                contexto.stroke();
+            }
+        }
+        
+        
+
+
+        //carregaImagem();
 
         function carregaImagem(imagem)
         {
@@ -69,7 +94,7 @@
                 } 
             };
         }
-        
+       
         
                
         /*forma para aumentar o zoom*/
