@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Mesa RPG</title>
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
         ul{
             list-style-type: none;
         }
@@ -13,11 +17,28 @@
             float:left; 
             margin:10px;
             cursor: pointer;
-            }
+        }
+        section canvas:first-child {
+            position: absolute;
+        }
+        section canvas:last-child {
+            position: absolute;
+        }
+        .listaImagens, #marq{
+            float:right;
+        }
+
     </style>
 </head>
 <body>
    <!-- <script type="text/javascript" src="js/mesa.js"></script>-->
+   <section>
+        <canvas id="canvasPrincipal"></canvas>
+        <canvas id="canvas"></canvas>
+   </section>
+   <div id="marq">
+       <h2>Marcações</h2>
+   </div>
    <div class="listaImagens">
        <ul>
            <li onclick="carregaImagem('img/fundo/mapa.jpg')"><img src="img/fundo/mapa.jpg" width="80" height="80"></li>
@@ -27,15 +48,23 @@
     </div>
     <script>
         /* Iniciando as variaveis globais */
-        var canvas = document.createElement("canvas");
+        
+        var canvas = document.getElementById("canvas");
         var canvasWidth = 540;
         var canvasHeight = 540;
-
+        
         canvas.width = canvasWidth
         canvas.height = canvasHeight;
         canvas.style.background = "rgba(0,0,0,0.1)";
-        document.body.appendChild(canvas);
+        //document.body.appendChild(canvas);
         var contexto = canvas.getContext("2d");
+
+        var canvasPrincipal = document.getElementById("canvasPrincipal");
+        canvasPrincipal.width = canvasWidth;
+        canvasPrincipal.height = canvasHeight;
+        //document.body.appendChild(canvasPrincipal);
+        var contextoPrincipal = canvasPrincipal.getContext("2d");
+        
 
         const img = new Image();
         
@@ -51,21 +80,21 @@
             }
             
             img.onload = () => {
-                contexto.drawImage(img, 0, 0);
+                contextoPrincipal.drawImage(img, 0, 0);
                 for(let i = 0; i < canvasWidth; i+=50)
                 {
-                    contexto.beginPath();
-                    contexto.lineTo(0, 50+i);
-                    contexto.lineTo(canvasWidth, 50+i);
-                    contexto.stroke();
+                    contextoPrincipal.beginPath();
+                    contextoPrincipal.lineTo(0, 50+i);
+                    contextoPrincipal.lineTo(canvasWidth, 50+i);
+                    contextoPrincipal.stroke();
                 }
                 
                 for(let i = 0; i < canvasHeight; i+=50)
                 {
-                    contexto.beginPath();
-                    contexto.lineTo(50+i, 0);
-                    contexto.lineTo(50+i, canvasHeight);
-                    contexto.stroke();
+                    contextoPrincipal.beginPath();
+                    contextoPrincipal.lineTo(50+i, 0);
+                    contextoPrincipal.lineTo(50+i, canvasHeight);
+                    contextoPrincipal.stroke();
                 } 
             };
         }
@@ -75,11 +104,12 @@
         {
             element.style.background = c;
             element.style.border = "2px solid #000";
-            element.style.width = "20px";
-            element.style.height = "20px";
-            document.body.appendChild(element);
+            element.style.width = "40px";
+            element.style.height = "40px";
+            //document.body.appendChild(element);
+            document.getElementById('marq').appendChild(element);
         }
-        var fireColor = "red", iceColor = "blue", groundColor = "brown", eraseColor = "black", activeColor = fireColor;
+        var fireColor = "red", iceColor = "blue", groundColor = "brown", eraseColor = false, activeColor = fireColor;
         var toolColor1 = document.createElement('div');
         var toolColor2 = document.createElement('div');
         var toolColor3 = document.createElement('div');
@@ -89,27 +119,23 @@
         insertTool(toolColor1, fireColor);
         insertTool(toolColor2, iceColor);
         insertTool(toolColor3, groundColor);
-        insertTool(erase, eraseColor);
+        insertTool(erase, "write");
        
         toolColor1.addEventListener("click", function()
         {
             activeColor = fireColor;
-            console.log(activeColor);
         }, false);
         toolColor2.addEventListener("click", function()
         {
             activeColor = iceColor;
-            console.log(activeColor);
         }, false);
         toolColor3.addEventListener("click", function()
         {
             activeColor = groundColor;
-            console.log(activeColor);
         }, false);
         erase.addEventListener("click", function()
         {
-            activeColor = eraseColor;
-            console.log(activeColor);
+            activeColor = true;
         }, false);
 
         function getMousePosition(eventoMouse){
@@ -122,8 +148,12 @@
 
         canvas.addEventListener("mousemove", function(evt){
             var canvasXY = getMousePosition(evt);
-            if(mousePressed){
-                draw(canvasXY.x, canvasXY.y);
+            if(activeColor == true){
+                clear(canvasXY.x, canvasXY.y, canvasWidth, canvasHeight)
+            }else{
+                if(mousePressed){
+                    draw(canvasXY.x, canvasXY.y);
+                }
             }
         }, false);
 
@@ -138,20 +168,23 @@
             mousePressed = false;
         }, false);
 
+        function clear(x,y, canvasWidth, canvasHeight){
+            contexto.beginPath();
+            contexto.clearRect(x, y, canvasWidth, canvasHeight);
+            contexto.lineWidth = 10;
+            contexto.lineCap = "round";
+            contexto.closePath();
+        }
+
         function draw(x, y){
             contexto.lineTo(x,y);
             contexto.strokeStyle = activeColor;
-            console.log("no metodo " + activeColor);
             contexto.lineWidth = 10;
+            contexto.lineCap = "round";
             contexto.stroke();
         }
 
         /* Código para desenhar no mapa */
-
-
-
-
-
 
         /*forma para aumentar o zoom*/
         contexto.scale(1.2,1.2);
