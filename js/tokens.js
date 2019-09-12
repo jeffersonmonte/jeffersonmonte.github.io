@@ -7,12 +7,11 @@ $(document).ready(function(){
     div = document.createElement("div");
     div.style.position = "absolute";
     div.style.left = "0px";
-    div.style.top = "0px";
+    div.style.top = "80px";
     div.style.width = "100px";
     div.style.height = "100px";
-    div.style.background = "red";
+    div.style.backgroundImage = "url('img/dagao.jpg')";
     div.style.color = "blue";
-    debugger;
 
     document.querySelector("#painel-mapa").appendChild(div);
 

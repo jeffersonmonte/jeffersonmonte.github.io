@@ -4,18 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Mesa</title>
+    <style>
+        *{margin:0; padding: 0;}
+        #controles{
+            width:100%;
+            border: #000 1px solid;
+            height: 80px;
+        }
+        #painel-mapa{
+            width:1200px;
+            height: 1200px;
+            border:2px solid #000;
+        }
+        .box-color{
+            width: 40px;
+            height: 40px;
+            border: 2px solid #000;
+            cursor: pointer;
+            float: left;
+            margin-right: 2px;
+        }
+        .fireColor{
+            background-color:orangered;
+        }
+        .waterColor{
+            background-color: aqua;
+        }
+        .groundColor{
+            background-color: brown;
+        }
+        .efeitos{
+            border-right: #000 1px solid;
+            margin-right: 10px;
+            margin-left: 10px;
+            float: left;
+        }
+        .npcClass {
+            float: left;
+            border-right: #000 1px solid;
+        }
+        .mapClass{
+            float: left;
+            margin-left: 10px;
+        }
+
+        .btn {
+            border: 2px solid gray;
+            color: gray;
+            background-color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .npcClass input[type=file] {
+            font-size: 80px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+        .mapClass input[type=file] {
+            font-size: 80px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+
+    </style>
 </head>
 <body>
     <div class="container">
-        <div class="controles">
-        
+        <div id="controles">
+            <div class="efeitos">
+                <h3>Efeitos:</h3>
+                <div class="fireColor box-color">Fogo</div>
+                <div class="waterColor box-color">Agua</div>
+                <div class="groundColor box-color">Terra</div>
+            </div>
+            <div id="npc" class="npcClass">
+                <h3>NPC's</h3>
+                <form method="POST" action="" enctype="multipart/form-data">
+                    <button class="btn">Enviar NPC</button>
+                    <input type="file" name="myNPC" />
+                </form>
+            </div>
+            <div id="npc" class="mapClass">
+                    <h3>Mapa</h3>
+                    <form method="POST" action="" enctype="multipart/form-data">
+                        <button class="btn">Mudar Mapa</button>
+                        <input type="file" name="myMap" />
+                    </form>
+                </div>
         </div>
-        <div id="painel-mapa">
 
+        <div id="painel-mapa">
+            <canvas id="mapa"></canvas>
+            <canvas id=""></canvas>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/tokens.js"></script>
+    <script type="text/javascript" src="js/canvas-mapa.js"></script>
 </body>
 </html>
