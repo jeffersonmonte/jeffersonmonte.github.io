@@ -48,32 +48,6 @@
             float: left;
             margin-left: 10px;
         }
-
-        .btn {
-            border: 2px solid gray;
-            color: gray;
-            background-color: white;
-            padding: 8px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        .npcClass input[type=file] {
-            font-size: 80px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-        }
-        .mapClass input[type=file] {
-            font-size: 80px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-        }
-
     </style>
 </head>
 <body>
@@ -87,18 +61,23 @@
             </div>
             <div id="npc" class="npcClass">
                 <h3>NPC's</h3>
-                <form method="POST" action="" enctype="multipart/form-data">
-                    <button class="btn">Enviar NPC</button>
-                    <input type="file" name="myNPC" />
-                </form>
+                <div class="criarNpc">
+                    <input type="text" id="nomeNPC" placeholder="Nome">
+                    <select id="tamanhoNPC">
+                        <option value="medio">Médio</option>
+                        <option value="grande">Grande</option>
+                        <option value="gigante">Gigante</option>
+                        <option value="colossal">Colossal</option>
+                    </select>
+                    <input type="number" id="qtdNPC" placeholder="Quantidade de NPC's">
+                    
+                    <input onclick="criarNPC()" type="submit" id="Enviar" value="Criar">
+                </div>
             </div>
             <div id="npc" class="mapClass">
-                    <h3>Mapa</h3>
-                    <form method="POST" action="" enctype="multipart/form-data">
-                        <button class="btn">Mudar Mapa</button>
-                        <input type="file" name="myMap" />
-                    </form>
-                </div>
+                <h3>Mapa</h3>
+                <input type="file" name="myMap" id="myMap" />
+            </div>
         </div>
 
         <div id="painel-mapa">
