@@ -1,12 +1,28 @@
+const $ = document.querySelector.bind(document);
+
+const previewImg = $('.preview-img');
+const fileChooser = $('.file-chooser');
+const fileButton = $('.file-button');
+fileButton.onclick = () => fileChooser.click();
+var urlImagem;
+fileChooser.onchange = e => {
+    const fileToUpload = e.target.files.item(0);
+    const reader = new FileReader();
+    reader.onload = e => previewImg.src = e.target.result;
+    reader.readAsDataURL(fileToUpload);
+    urlImagem =  e.target.result;
+};
+
 function criarNPC()
 {
+    debugger;
     var nomeNPC = document.getElementById('nomeNPC').value;
     var tamanhoNPC = document.getElementById('tamanhoNPC').value;
     var qtdNPC = document.getElementById('qtdNPC').value;
     
     for(var i = 0; i<qtdNPC; i++)
     {
-        var npc = new NPC(tamanhoNPC, "img/dagao.jpg", nomeNPC);  
+        var npc = new NPC(tamanhoNPC, previewImg.currentSrc, nomeNPC);  
     }
 };
 

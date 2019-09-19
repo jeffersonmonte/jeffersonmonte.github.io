@@ -37,14 +37,14 @@ function carregaImagem(imagem)
 {
     if(imagem == null || imagem == undefined)
     {
-        img.src = 'img/fundo/mapa.jpg';
+        img.src = 'img/fundo/Grudd_Haug_Superior.png';
     }else{
         img.src = imagem;
     }
     
     img.onload = () => {
         ctxMapa.drawImage(img, 0, 0);
-        for(let i = 0; i < canvasWidth; i+=50)
+        /*for(let i = 0; i < canvasWidth; i+=50)
         {
             ctxMapa.beginPath();
             ctxMapa.lineTo(0, 50+i);
@@ -58,6 +58,6 @@ function carregaImagem(imagem)
             ctxMapa.lineTo(50+i, 0);
             ctxMapa.lineTo(50+i, canvasHeight);
             ctxMapa.stroke();
-        } 
+        } */
     };
 }
