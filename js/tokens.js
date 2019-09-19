@@ -22,9 +22,23 @@ function criarNPC()
     
     for(var i = 0; i<qtdNPC; i++)
     {
-        var npc = new NPC(tamanhoNPC, previewImg.currentSrc, nomeNPC);  
+        var npc = new NPC(tamanhoNPC, previewImg.currentSrc, nomeNPC+i);
+        criListaNPC(nomeNPC+i);
     }
 };
+
+function criListaNPC(nome){
+    liNPC = document.createElement("li");
+    liNPC.setAttribute('class','item');
+    liNPC.onclick = function () {
+        this.parentElement.removeChild(this);
+        var npc = document.getElementById(nome);
+        npc.remove();
+    };
+    document.querySelector("#listaNPC").appendChild(liNPC);
+    liNPC.innerHTML = nome;
+}
+
 
 var NPC = function(tamanho, imagem, nome)
 {
@@ -35,6 +49,7 @@ var NPC = function(tamanho, imagem, nome)
     var isDown = false;
 
     div = document.createElement("div");
+    div.id = nome;
     div.style.position = "absolute";
     div.style.left = "0px";
     div.style.top = "80px";
