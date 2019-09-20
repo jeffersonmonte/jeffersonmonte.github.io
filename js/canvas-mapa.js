@@ -12,19 +12,21 @@ var ctxMapa = canvasMapa.getContext("2d");
 const img = new Image();
 
 var fileTag = document.getElementById("myMap");
+
 fileTag.addEventListener("change", function() {
     changeImage(this);
 });
 
 function changeImage(input) {
-var reader;
+    var reader;
 
-if (input.files && input.files[0]) {
-    reader = new FileReader();
+    if (input.files && input.files[0]) {
+        reader = new FileReader();
+        
 
-    reader.onload = function(e) {
-    //preview.setAttribute('src', e.target.result);
-    carregaImagem(e.target.result);
+        reader.onload = function(e) {
+        //preview.setAttribute('src', e.target.result);
+        carregaImagem(e.target.result);
     }
 
     reader.readAsDataURL(input.files[0]);
@@ -33,17 +35,23 @@ if (input.files && input.files[0]) {
 
 carregaImagem();
 
-function carregaImagem(imagem)
+function carregaImagem(imagem, coiso = true)
 {
+    debugger;
     if(imagem == null || imagem == undefined)
     {
         img.src = 'img/fundo/Grudd_Haug_Superior.png';
     }else{
         img.src = imagem;
     }
-    
+
+    var w = img.width;
     img.onload = () => {
         ctxMapa.drawImage(img, 0, 0);
+        if(coiso){
+            mudarTamanhoCanvas(img.width, img.height, imagem);
+        }
+        
         /*for(let i = 0; i < canvasWidth; i+=50)
         {
             ctxMapa.beginPath();
@@ -60,4 +68,24 @@ function carregaImagem(imagem)
             ctxMapa.stroke();
         } */
     };
+}
+
+function mudarTamanhoCanvas(width, height, imagem){
+    debugger;
+    var tamanhoMesa = document.getElementById('painel-mapa');
+
+    if(width == null || width == undefined || height == null || height == undefined){
+        tamanhoMesa.style.width = '4600px';
+        tamanhoMesa.style.height = '2350px';
+
+        canvasMapa.style.width = "4600px";
+        canvasMapa.style.height = "2350px";
+    }else{
+        tamanhoMesa.style.width = width+"px";
+        tamanhoMesa.style.height = height+"px";
+
+        canvasMapa.width = tamanhoMesa.clientWidth;
+        canvasMapa.height = tamanhoMesa.clientHeight;
+    }
+    carregaImagem(imagem, false);
 }

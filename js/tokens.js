@@ -15,7 +15,6 @@ fileChooser.onchange = e => {
 
 function criarNPC()
 {
-    debugger;
     var nomeNPC = document.getElementById('nomeNPC').value;
     var tamanhoNPC = document.getElementById('tamanhoNPC').value;
     var qtdNPC = document.getElementById('qtdNPC').value;
