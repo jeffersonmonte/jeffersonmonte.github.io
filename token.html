@@ -8,12 +8,18 @@
     <style>
         *{margin:0; padding: 0;}
         #controles{
-            width:100%;
+            position:fixed;
+            z-index:999; 
+            width:200px;
             border: #000 1px solid;
-            height: 80px;
+            height: 100%;
+            display:block;
+            background-color: aliceblue;
         }
         #painel-mapa{
             border:2px solid #000;
+            display:block;
+            margin-left: 160px;
         }
         .box-color{
             width: 40px;
@@ -33,24 +39,31 @@
             background-color: brown;
         }
         .efeitos{
-            border-right: #000 1px solid;
-            margin-right: 10px;
-            margin-left: 10px;
-            float: left;
-        }
+            margin-bottom: 50px;
+         }
         .npcClass {
-            float: left;
-            border-right: #000 1px solid;
+            margin-bottom: 50px;
+          }
+        .npcClass .criarNpc input{
+            margin-bottom: 7px;
+        }
+        #qtdNPC{
+            width:40px;
+            margin-bottom: 7px;
+            margin-top: 7px;
         }
         .mapClass{
-            float: left;
-            margin-left: 10px;
-        }
+            margin-bottom: 30px;
+          }
     </style>
 </head>
 <body>
     <div class="container">
         <div id="controles">
+            <div id="npc" class="mapClass">
+                <h3>Mapa</h3>
+                <input type="file" name="myMap" id="myMap" value="Mudar Mapa"/>
+            </div>
             <div class="efeitos">
                 <h3>Efeitos:</h3>
                 <div class="fireColor box-color">Fogo</div>
@@ -60,31 +73,31 @@
             <div id="npc" class="npcClass">
                 <h3>NPC's</h3>
                 <div class="criarNpc">
-                        <img class="preview-img" style="display: none;">
+                    <img class="preview-img" style="display: none;">
                     <input type="text" id="nomeNPC" placeholder="Nome">
-                    <select id="tamanhoNPC">
-                        <option value="medio">Médio</option>
-                        <option value="grande">Grande</option>
-                        <option value="gigante">Gigante</option>
-                        <option value="colossal">Colossal</option>
-                    </select>
-                    <input type="number" id="qtdNPC" placeholder="Quantidade de NPC's">
+                    <label>Tamanho
+                        <select id="tamanhoNPC">
+                            <option value="medio">Médio</option>
+                            <option value="grande">Grande</option>
+                            <option value="gigante">Gigante</option>
+                            <option value="colossal">Colossal</option>
+                        </select>
+                    </label>
+                    <label name="qtd">Quantidade de NPC's
+                        <input type="number" id="qtdNPC" width="15px">
+                    </label>    
                     <input class="file-button" type="button" value="Escolha seu lindo NPC">
 
                     <input class="file-chooser" type="file" accept="image/*" hidden>
                     <input onclick="criarNPC()" type="submit" id="Enviar" value="Criar">
                 </div>
             </div>
-            <div id="npc" class="mapClass">
-                <h3>Mapa</h3>
-                <input type="file" name="myMap" id="myMap" />
+            <div class=>
+                <h3>Lista de NPCs</h3>
+                <ul id="listaNPC">
+    
+                </ul>
             </div>
-        </div>
-        <div class=>
-            <h3>Lista de NPCs</h3>
-            <ul id="listaNPC">
-
-            </ul>
         </div>
         <div id="painel-mapa">
             <canvas id="mapa"></canvas>

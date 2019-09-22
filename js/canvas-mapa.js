@@ -1,5 +1,6 @@
 
 var canvasMapa = document.getElementById("mapa");
+var tamanhoMesa = document.getElementById('painel-mapa');
 var canvasWidth = document.getElementById("painel-mapa").clientWidth;
 var canvasHeight = document.getElementById("painel-mapa").clientHeight;
 
@@ -37,7 +38,6 @@ carregaImagem();
 
 function carregaImagem(imagem, coiso = true)
 {
-    debugger;
     if(imagem == null || imagem == undefined)
     {
         img.src = 'img/fundo/Grudd_Haug_Superior.png';
@@ -71,7 +71,6 @@ function carregaImagem(imagem, coiso = true)
 }
 
 function mudarTamanhoCanvas(width, height, imagem){
-    debugger;
     var tamanhoMesa = document.getElementById('painel-mapa');
 
     if(width == null || width == undefined || height == null || height == undefined){
@@ -89,3 +88,12 @@ function mudarTamanhoCanvas(width, height, imagem){
     }
     carregaImagem(imagem, false);
 }
+
+
+    jQuery("div#painel-mapa").mousedown(function(e){
+        jQuery("html, body").mousemove(function(i, v) {
+            var h = jQuery(window).height();
+            var y = e.clientY - h / 2;
+            return v + y * 0.1;
+        });
+    });

@@ -47,11 +47,23 @@ var NPC = function(tamanho, imagem, nome)
     var div;
     var isDown = false;
 
+    var posicaoEsquerda = jQuery(jQuery(window).scrollLeft());
+    var posicaoCima = jQuery(jQuery(window).scrollTop());
+    if(posicaoEsquerda[0] == undefined || posicaoEsquerda[0] == null || posicaoEsquerda[0] == "")
+    {
+        posicaoEsquerda[0] = 0;
+    }
+    if(posicaoCima[0] == undefined || posicaoCima[0] == null || posicaoCima[0] == "")
+    {
+        posicaoCima[0] = 0;
+    }
+
     div = document.createElement("div");
     div.id = nome;
     div.style.position = "absolute";
-    div.style.left = "0px";
-    div.style.top = "80px";
+    div.style.left = posicaoEsquerda[0]+400+"px";
+    div.style.top = posicaoCima[0]+200+"px";
+    console.log(posicaoEsquerda[0]+400);
     if(tamanho == "medio")
     {
         div.style.width = "50px";
