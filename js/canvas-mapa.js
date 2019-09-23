@@ -1,5 +1,6 @@
 
 var canvasMapa = document.getElementById("mapa");
+var controlMapa = document.getElementById("control");
 var tamanhoMesa = document.getElementById('painel-mapa');
 var canvasWidth = document.getElementById("painel-mapa").clientWidth;
 var canvasHeight = document.getElementById("painel-mapa").clientHeight;
@@ -9,6 +10,10 @@ canvasMapa.width = canvasWidth
 canvasMapa.height = canvasHeight;
 canvasMapa.style.background = "rgba(0,0,0,0.1)";
 var ctxMapa = canvasMapa.getContext("2d");
+
+controlMapa.width = canvasWidth;
+controlMapa.height = canvasHeight;
+var ctxControl = controlMapa.getContext("2d");
 
 const img = new Image();
 
@@ -77,11 +82,17 @@ function mudarTamanhoCanvas(width, height, imagem){
         tamanhoMesa.style.width = '4600px';
         tamanhoMesa.style.height = '2350px';
 
+        controlMapa.width = "4600px";
+        controlMapa.height = "4600px";
+
         canvasMapa.style.width = "4600px";
         canvasMapa.style.height = "2350px";
     }else{
         tamanhoMesa.style.width = width+"px";
         tamanhoMesa.style.height = height+"px";
+
+        controlMapa.width = tamanhoMesa.clientWidth;
+        controlMapa.height = tamanhoMesa.clientHeight;
 
         canvasMapa.width = tamanhoMesa.clientWidth;
         canvasMapa.height = tamanhoMesa.clientHeight;

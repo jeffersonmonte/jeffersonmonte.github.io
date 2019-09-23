@@ -21,6 +21,15 @@
             display:block;
             margin-left: 160px;
         }
+        #control{
+            border: red 1px solid;
+        }
+        div canvas:first-child {
+            position: absolute;
+        }
+        div canvas:last-child {
+            position: absolute;
+        }
         .box-color{
             width: 40px;
             height: 40px;
@@ -101,11 +110,12 @@
         </div>
         <div id="painel-mapa">
             <canvas id="mapa"></canvas>
-            <canvas id=""></canvas>
+            <canvas id="control"></canvas>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/tokens.js"></script>
     <script type="text/javascript" src="js/canvas-mapa.js"></script>
+    <script type="text/javascript" src="js/control-mapa.js"></script>
 </body>
 </html>
