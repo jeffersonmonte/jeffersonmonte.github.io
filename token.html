@@ -21,13 +21,7 @@
             display:block;
             margin-left: 160px;
         }
-        #control{
-            border: red 1px solid;
-        }
         div canvas:first-child {
-            position: absolute;
-        }
-        div canvas:last-child {
             position: absolute;
         }
         .box-color{
@@ -68,16 +62,16 @@
 </head>
 <body>
     <div class="container">
+        <div id="showHiddenControls">
+            <button type="button" class="toggle-btn">Painel de Controles</button>
+        </div>
         <div id="controles">
             <div id="npc" class="mapClass">
                 <h3>Mapa</h3>
                 <input type="file" name="myMap" id="myMap" value="Mudar Mapa"/>
             </div>
-            <div class="efeitos">
-                <h3>Efeitos:</h3>
-                <div class="fireColor box-color">Fogo</div>
-                <div class="waterColor box-color">Agua</div>
-                <div class="groundColor box-color">Terra</div>
+            <div id="marq" class="efeitos">
+                <h3>Efeitos</h3>
             </div>
             <div id="npc" class="npcClass">
                 <h3>NPC's</h3>
@@ -104,18 +98,28 @@
             <div class=>
                 <h3>Lista de NPCs</h3>
                 <ul id="listaNPC">
-    
                 </ul>
             </div>
         </div>
         <div id="painel-mapa">
             <canvas id="mapa"></canvas>
-            <canvas id="control"></canvas>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="js/tokens.js"></script>
     <script type="text/javascript" src="js/canvas-mapa.js"></script>
     <script type="text/javascript" src="js/control-mapa.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            // Toggles paragraphs with different speeds
+            jQuery(".toggle-btn").click(function(){
+                //$("p.normal").toggle();
+                //$("p.fast").toggle("fast");
+                jQuery("#controles").toggle("slow");
+                //$("p.very-fast").toggle(50);
+                //$("p.very-slow").toggle(2000);
+            });
+        });
+        </script>
 </body>
 </html>

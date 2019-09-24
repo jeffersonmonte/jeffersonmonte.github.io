@@ -63,7 +63,6 @@ var NPC = function(tamanho, imagem, nome)
     div.style.position = "absolute";
     div.style.left = posicaoEsquerda[0]+400+"px";
     div.style.top = posicaoCima[0]+200+"px";
-    console.log(posicaoEsquerda[0]+400);
     if(tamanho == "medio")
     {
         div.style.width = "50px";
