@@ -131,7 +131,6 @@ function mudarTamanhoCanvas(width, height, imagem){
  }, false);
 
  function clear(x,y, canvasWidth, canvasHeight){
-     console.log("X: "+x+", Y: "+y+", CW: "+canvasWidth+", CH: "+canvasHeight );
     ctxMapa.beginPath();
     ctxMapa.clearRect(x, y, 30, 30);
 

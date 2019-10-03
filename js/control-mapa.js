@@ -37,7 +37,6 @@ function carregaImagem(imagem, coiso = true)
     img.onload = () => {
         ctxImagemMapa.drawImage(img, 0, 0);
         if(coiso){
-            debugger;
             mudarTamanhoCanvas(img.width, img.height, imagem);
         }
         
