@@ -73,16 +73,17 @@ var NPC = function(tamanho, imagem, nome)
         div.style.width = "100px";
         div.style.height = "100px";
         div.style.backgroundSize = "100px 100px";
-    }else if(tamanho = "gigante")
+    }else if(tamanho == "gigante")
     {
         div.style.width = "150px";
         div.style.height = "150px";
         div.style.backgroundSize = "150px 150px";
-    }else if(tamanho = "colossal")
+    }else if(tamanho == "colossal")
     {
+        debugger;
         div.style.width = "200px";
         div.style.height = "200px";
-        div.style.backgroundSize = "200px 200px";
+        div.style.backgroundSize = "250px 250px";
     }
     
     div.style.backgroundImage = "url('"+imagem+"')";

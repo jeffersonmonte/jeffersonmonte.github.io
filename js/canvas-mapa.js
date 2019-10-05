@@ -130,7 +130,7 @@ function mudarTamanhoCanvas(width, height, imagem){
      mousePressed = false;
  }, false);
 
- function clear(x,y, canvasWidth, canvasHeight){
+ function clear(x,y, canvasWidth, canvasHeight){a
     ctxMapa.beginPath();
     ctxMapa.clearRect(x, y, 30, 30);
 
